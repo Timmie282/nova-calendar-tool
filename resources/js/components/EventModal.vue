@@ -23,7 +23,7 @@
                         <date-time-picker @change="changeEnd" v-model="end" name="end" class="w-full form-control form-input form-input-bordered" autocomplete="off" />
                     </div>
                   <div class="border-b border-40 pb-4">
-                    <label for="description" class="mb-2 text-80 leading-tight">Title:</label>
+                    <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
                     <input v-model="description" name="description" class="w-full form-control form-input form-input-bordered" />
                   </div>
                 </div>
@@ -48,7 +48,7 @@
             return {
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
-                end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
+                end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss'),
                 description: this.currentEvent !== null ? this.currentEvent.event.description : '',
             }
         },
