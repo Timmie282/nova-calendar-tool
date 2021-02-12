@@ -16,7 +16,7 @@
                     </div>
                     <div class="border-b border-40 pb-4">
                       <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
-                      <input v-model="description" name="description" class="w-full form-control form-input form-input-bordered"/>
+                      <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered"></textarea>
                     </div>
                     <div class="border-b border-40 py-4">
                         <label for="start" class="mb-2 text-80 leading-tight">Start:</label>
