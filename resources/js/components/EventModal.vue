@@ -14,6 +14,10 @@
                         <label for="title" class="mb-2 text-80 leading-tight">Title:</label>
                         <input v-model="title" name="title" class="w-full form-control form-input form-input-bordered" />
                     </div>
+                    <div class="border-b border-40 pb-4">
+                      <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
+                      <input v-model="description" name="description" class="w-full form-control form-input form-input-bordered"/>
+                    </div>
                     <div class="border-b border-40 py-4">
                         <label for="start" class="mb-2 text-80 leading-tight">Start:</label>
                         <date-time-picker @change="changeStart" v-model="start" name="start" class="w-full form-control form-input form-input-bordered" autocomplete="off" />
@@ -22,10 +26,6 @@
                         <label for="end" class="mb-2 text-80">End:</label>
                         <date-time-picker @change="changeEnd" v-model="end" name="end" class="w-full form-control form-input form-input-bordered" autocomplete="off" />
                     </div>
-                  <div class="border-b border-40 pb-4">
-                    <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
-                    <input v-model="description" name="description" class="w-full form-control form-input form-input-bordered" />
-                  </div>
                 </div>
             </slot>
 
@@ -47,9 +47,9 @@
         data() {
             return {
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
-                start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
-                end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss'),
                 description: this.currentEvent !== null ? this.currentEvent.event.description : '',
+                start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
+                end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
             }
         },
         methods: {
@@ -77,9 +77,9 @@
             handleSave() {
                 let data = {
                     title: this.title,
+                    description: this.description,
                     start: this.start,
                     end: this.end,
-                    description: this.description
                 };
 
                 if (this.currentEvent === null) {
