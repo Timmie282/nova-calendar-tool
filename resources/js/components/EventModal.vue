@@ -22,6 +22,10 @@
                         <label for="end" class="mb-2 text-80">End:</label>
                         <date-time-picker @change="changeEnd" v-model="end" name="end" class="w-full form-control form-input form-input-bordered" autocomplete="off" />
                     </div>
+                  <div class="border-b border-40 pb-4">
+                    <label for="description" class="mb-2 text-80 leading-tight">Title:</label>
+                    <input v-model="description" name="description" class="w-full form-control form-input form-input-bordered" />
+                  </div>
                 </div>
             </slot>
 
