@@ -49,6 +49,7 @@
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
                 end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
+                description: this.currentEvent !== null ? this.currentEvent.event.description : '',
             }
         },
         methods: {
@@ -77,7 +78,8 @@
                 let data = {
                     title: this.title,
                     start: this.start,
-                    end: this.end
+                    end: this.end,
+                    description: this.description
                 };
 
                 if (this.currentEvent === null) {
