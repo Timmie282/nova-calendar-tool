@@ -29691,7 +29691,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       axios.get('/nova-vendor/nova-calendar-tool/events').then(function (response) {
-        return _this3.projects = JSON.stringify(response.data);
+        return _this3.projects = JSON.stringify(response.data[1]);
       });
     }
   }
