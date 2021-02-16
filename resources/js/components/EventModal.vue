@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       // projects: [],
-      project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
+      // project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -91,7 +91,7 @@ export default {
     },
     handleSave() {
       let data = {
-        project_id: this.project_id,
+        // project_id: this.project_id,
         title: this.title,
         description: this.description,
         start: this.start,

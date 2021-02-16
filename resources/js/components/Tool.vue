@@ -24,6 +24,7 @@
     import interactionPlugin from '@fullcalendar/interaction';
     import allLocales from '@fullcalendar/core/locales-all';
     import EventModal from './EventModal';
+    // import axios from 'axios';
 
     export default {
         components: {
