@@ -11,8 +11,8 @@
                     <heading v-if="!currentEvent" :level="2" class="mb-6">{{ __('Create Event') }}</heading>
                     <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
                   <div class="border-b border-40 pb-4">
-                    <label for="project_id" class="mb-2 text-80 leading-tight">Title:</label>
-                    <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered" v-for="project in projects">
+                    <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
+                    <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered" v-for="project in fetchProjects()">
                         <option :value=" project.pro_id ">@{{ project.name }}</option>
                     </select>
                   </div>

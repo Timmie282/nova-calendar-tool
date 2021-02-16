@@ -28849,10 +28849,10 @@ var render = function() {
                                 staticClass: "mb-2 text-80 leading-tight",
                                 attrs: { for: "project_id" }
                               },
-                              [_vm._v("Title:")]
+                              [_vm._v("Project:")]
                             ),
                             _vm._v(" "),
-                            _vm._l(_vm.projects, function(project) {
+                            _vm._l(_vm.fetchProjects(), function(project) {
                               return _c(
                                 "select",
                                 {
