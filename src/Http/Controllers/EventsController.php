@@ -14,14 +14,14 @@ class EventsController
         $events = Event::filter($request->query())
             ->get(['cal_id', 'est_id', 'project_id', 'title', 'start', 'end', 'description']);
 
-        $projects = Project::select('pro_id', 'name')
-	        ->get();
-
-        $estates = Estate::select('est_id', 'address')
-	        ->get();
-
-        $events[] = $projects;
-        $events[] = $estates;
+//        $projects = Project::select('pro_id', 'name')
+//	        ->get();
+//
+//        $estates = Estate::select('est_id', 'address')
+//	        ->get();
+//
+//        $events[] = $projects;
+//        $events[] = $estates;
         $events = json_encode($events);
 
         return response($events);
