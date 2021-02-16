@@ -23,7 +23,7 @@ class EventsController
 	        ->get(['est_id', 'address'])
             ->toJson();
 
-        return response($events, $projects, $estates);
+        return response([$events, $projects, $estates]);
     }
 
     public function store(Request $request)
