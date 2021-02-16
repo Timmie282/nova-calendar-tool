@@ -12,18 +12,19 @@ class EventsController
     public function index(Request $request)
     {
         $events = Event::filter($request->query())
-            ->get(['cal_id', 'est_id', 'project_id', 'title', 'start', 'end', 'description'])
-            ->toJson();
+            ->get(['cal_id', 'est_id', 'project_id', 'title', 'start', 'end', 'description']);
 
-        $projects = Project::select()
-	        ->get(['pro_id', 'name'])
-            ->toJson();
+        $projects = Project::select('pro_id', 'name')
+	        ->get();
 
-        $estates = Estate::select()
-	        ->get(['est_id', 'address'])
-            ->toJson();
+        $estates = Estate::select('est_id', 'address')
+	        ->get();
 
-        return response([$projects, $events, $estates]);
+        $events[] = $projects;
+        $events[] = $estates;
+        $events = json_encode($events);
+
+        return response($events);
     }
 
     public function store(Request $request)
