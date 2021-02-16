@@ -14,13 +14,18 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('cal_id');
+            $table->unsignedBigInteger('est_id');
+            $table->unsignedBigInteger('project_id');
             $table->string('google_calendar_id')->nullable();
             $table->string('title');
             $table->timestamp('start')->nullable();
             $table->timestamp('end')->nullable();
             $table->text('description');
             $table->timestamps();
+
+            $table->foreign('est_id')->references('est_id')->on('estates');
+            $table->foreign('pro_id')->references('pro_id')->on('projects');
         });
     }
 

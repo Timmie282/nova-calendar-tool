@@ -4,6 +4,8 @@ namespace Czemu\NovaCalendarTool\Http\Controllers;
 
 use Czemu\NovaCalendarTool\Models\Event;
 use Illuminate\Http\Request;
+use App\Models\Tenant\Project;
+use App\Models\Tenant\Estate;
 
 class EventsController
 {
@@ -13,7 +15,15 @@ class EventsController
             ->get(['id', 'title', 'start', 'end', 'description'])
             ->toJson();
 
-        return response($events);
+        $projects = Project::filter($request->query())
+	        ->get(['pro_id', 'name'])
+            ->toJson();
+
+        $estates = Estate::filter($request->query())
+	        ->get(['est_id', 'address'])
+            ->toJson();
+
+        return response($events, $projects, $estates);
     }
 
     public function store(Request $request)

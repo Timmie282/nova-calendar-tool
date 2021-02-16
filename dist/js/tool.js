@@ -28694,12 +28694,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'EventModal',
     props: ['currentEvent', 'currentDate'],
     data: function data() {
         return {
+            project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
             title: this.currentEvent !== null ? this.currentEvent.event.title : '',
             description: this.currentEvent !== null ? this.currentEvent.event.description : '',
             start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -28707,6 +28714,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    ready: function ready() {
+        this.fetchProjects();
+    },
     methods: {
         changeStart: function changeStart(value) {
             this.start = value;
@@ -28734,6 +28744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             var data = {
+                project_id: this.project_id,
                 title: this.title,
                 description: this.description,
                 start: this.start,
@@ -28765,6 +28776,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return _this2.$toasted.show('Something went wrong', { type: 'error' });
                 });
             }
+        },
+
+        fetchProjects: function fetchProjects() {
+            this.http.get('/nova/nova-calendar-tool', function (projects) {
+                alert(projects);
+                this.$set('projects', projects);
+            });
         }
     }
 });
@@ -28820,6 +28838,66 @@ var render = function() {
                               [_vm._v(_vm._s(_vm.__("Edit Event")))]
                             )
                           : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "border-b border-40 pb-4" },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mb-2 text-80 leading-tight",
+                                attrs: { for: "project_id" }
+                              },
+                              [_vm._v("Title:")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.projects, function(project) {
+                              return _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.project_id,
+                                      expression: "project_id"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "w-full form-control form-input form-input-bordered",
+                                  attrs: { name: "title" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.project_id = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { domProps: { value: project.pro_id } },
+                                    [_vm._v("@" + _vm._s(project.name))]
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        ),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(

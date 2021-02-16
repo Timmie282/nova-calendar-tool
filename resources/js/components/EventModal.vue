@@ -10,6 +10,12 @@
                 <div class="p-8">
                     <heading v-if="!currentEvent" :level="2" class="mb-6">{{ __('Create Event') }}</heading>
                     <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
+                  <div class="border-b border-40 pb-4">
+                    <label for="project_id" class="mb-2 text-80 leading-tight">Title:</label>
+                    <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered" v-for="project in projects">
+                        <option :value=" project.pro_id ">@{{ project.name }}</option>
+                    </select>
+                  </div>
                     <div class="border-b border-40 pb-4">
                         <label for="title" class="mb-2 text-80 leading-tight">Title:</label>
                         <input v-model="title" name="title" class="w-full form-control form-input form-input-bordered" />
@@ -46,11 +52,15 @@
         props: ['currentEvent', 'currentDate'],
         data() {
             return {
+                project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 description: this.currentEvent !== null ? this.currentEvent.event.description : '',
                 start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
                 end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
             }
+        },
+        ready: function(){
+            this.fetchProjects();
         },
         methods: {
             changeStart(value) {
@@ -76,6 +86,7 @@
             },
             handleSave() {
                 let data = {
+                    project_id: this.project_id,
                     title: this.title,
                     description: this.description,
                     start: this.start,
@@ -110,6 +121,12 @@
                         .catch(response => this.$toasted.show('Something went wrong', { type: 'error' }));
                 }
             },
+            fetchProjects:function(){
+                this.http.get('/nova/nova-calendar-tool', function (projects) {
+                    alert(projects);
+                    this.$set('projects', projects);
+                });
+            }
         },
     }
 </script>
