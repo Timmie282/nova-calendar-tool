@@ -29690,7 +29690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
       var _this3 = this;
 
-      axios.get('./api/events').then(function (response) {
+      axios.get('./nova-api/scripts/nova-calendar-tool').then(function (response) {
         return _this3.projects = JSON.stringify(response.data);
       });
     }
