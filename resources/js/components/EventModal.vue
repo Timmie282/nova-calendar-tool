@@ -10,12 +10,12 @@
         <div class="p-8">
           <heading v-if="!currentEvent" :level="2" class="mb-6">{{ __('Create Event') }}</heading>
           <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
-<!--          <div class="border-b border-40 pb-4">-->
-<!--            <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>-->
-<!--            <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered">-->
-<!--              <option v-for="project in projects" :value=" project.pro_id ">{{ project.name }}</option>-->
-<!--            </select>-->
-<!--          </div>-->
+          <div class="border-b border-40 pb-4">
+            <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
+            <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered">
+              <option v-for="project in projects" :value=" project.pro_id ">{{ project.name }}</option>
+            </select>
+          </div>
           <div class="border-b border-40 pb-4">
             <label for="title" class="mb-2 text-80 leading-tight">Title:</label>
             <input v-model="title" name="title" class="w-full form-control form-input form-input-bordered"/>
@@ -59,8 +59,8 @@ export default {
   props: ['currentEvent', 'currentDate'],
   data() {
     return {
-      // projects: [],
-      // project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
+      projects: [],
+      project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -91,7 +91,7 @@ export default {
     },
     handleSave() {
       let data = {
-        // project_id: this.project_id,
+        project_id: this.project_id,
         title: this.title,
         description: this.description,
         start: this.start,
@@ -126,10 +126,10 @@ export default {
             .catch(response => this.$toasted.show('Something went wrong', {type: 'error'}));
       }
     },
-    // created() {
-    //   axios.get('./nova/nova-calendar-tool')
-    //       .then(response => this.projects = JSON.stringify(response.data));
-    // },
+    created() {
+      axios.get('./api/events')
+          .then(response => this.projects = JSON.stringify(response.data));
+    },
 
   },
 }
