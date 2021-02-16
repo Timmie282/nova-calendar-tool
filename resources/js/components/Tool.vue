@@ -50,7 +50,8 @@
                 },
                 currentEvent: null,
                 currentDate: null,
-                showModal: false
+                showModal: false,
+                array: 0
             }
         },
         methods: {
