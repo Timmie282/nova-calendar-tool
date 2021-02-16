@@ -11641,7 +11641,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -11746,8 +11746,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             currentEvent: null,
             currentDate: null,
-            showModal: false,
-            array: 0
+            showModal: false
         };
     },
 
@@ -29641,7 +29640,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     handleDelete: function handleDelete() {
       var _this = this;
 
-      Nova.request().delete('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/destroy').then(function (response) {
+      Nova.request().delete('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.cal_id + '/destroy').then(function (response) {
         if (response.data.success) {
           _this.$toasted.show('Event has been deleted', { type: 'success' });
           _this.$emit('close');
@@ -29675,7 +29674,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           return _this2.$toasted.show('Something went wrong', { type: 'error' });
         });
       } else if (this.currentEvent !== null) {
-        Nova.request().put('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/update', data).then(function (response) {
+        Nova.request().put('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.cal_id + '/update', data).then(function (response) {
           if (response.data.success) {
             _this2.$toasted.show('Event has been updated', { type: 'success' });
             _this2.$emit('close');

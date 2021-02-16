@@ -79,7 +79,7 @@ export default {
     },
     handleDelete() {
       Nova.request()
-          .delete('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/destroy')
+          .delete('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.cal_id + '/destroy')
           .then(response => {
             if (response.data.success) {
               this.$toasted.show('Event has been deleted', {type: 'success'});
@@ -113,7 +113,7 @@ export default {
             .catch(response => this.$toasted.show('Something went wrong', {type: 'error'}));
       } else if (this.currentEvent !== null) {
         Nova.request()
-            .put('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/update', data)
+            .put('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.cal_id + '/update', data)
             .then(response => {
               if (response.data.success) {
                 this.$toasted.show('Event has been updated', {type: 'success'});
