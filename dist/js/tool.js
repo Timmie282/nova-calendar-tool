@@ -28641,7 +28641,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nlabel[data-v-45f0835e] {\n    display: block;\n}\n.btn-wrapper[data-v-45f0835e] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n.btn.delete-event[data-v-45f0835e] {\n    margin-right: auto;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n", ""]);
+exports.push([module.i, "\nlabel[data-v-45f0835e] {\r\n  display: block;\n}\n.btn-wrapper[data-v-45f0835e] {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: end;\r\n      -ms-flex-pack: end;\r\n          justify-content: flex-end;\n}\n.btn.delete-event[data-v-45f0835e] {\r\n  margin-right: auto;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\n}\r\n", ""]);
 
 // exports
 
@@ -28700,90 +28700,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    el: '#vue-instance',
-    name: 'EventModal',
-    props: ['currentEvent', 'currentDate'],
-    data: function data() {
-        return {
-            projects: this.fetchProjects(),
-            project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
-            title: this.currentEvent !== null ? this.currentEvent.event.title : '',
-            description: this.currentEvent !== null ? this.currentEvent.event.description : '',
-            start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
-            end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
-        };
+  el: '#vue-instance',
+  name: 'EventModal',
+  props: ['currentEvent', 'currentDate'],
+  data: function data() {
+    return {
+      projects: this.fetchProjects(),
+      project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
+      title: this.currentEvent !== null ? this.currentEvent.event.title : '',
+      description: this.currentEvent !== null ? this.currentEvent.event.description : '',
+      start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
+      end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
+    };
+  },
+
+  methods: {
+    changeStart: function changeStart(value) {
+      this.start = value;
+    },
+    changeEnd: function changeEnd(value) {
+      this.end = value;
+    },
+    handleClose: function handleClose() {
+      this.$emit('close');
+    },
+    handleDelete: function handleDelete() {
+      var _this = this;
+
+      Nova.request().delete('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/destroy').then(function (response) {
+        if (response.data.success) {
+          _this.$toasted.show('Event has been deleted', { type: 'success' });
+          _this.$emit('close');
+          _this.$emit('refreshEvents');
+        }
+      }).catch(function (response) {
+        return _this.$toasted.show('Something went wrong', { type: 'error' });
+      });
+    },
+    handleSave: function handleSave() {
+      var _this2 = this;
+
+      var data = {
+        project_id: this.project_id,
+        title: this.title,
+        description: this.description,
+        start: this.start,
+        end: this.end
+      };
+
+      if (this.currentEvent === null) {
+        Nova.request().post('/nova-vendor/nova-calendar-tool/events/store', data).then(function (response) {
+          if (response.data.success) {
+            _this2.$toasted.show('Event has been created', { type: 'success' });
+            _this2.$emit('close');
+            _this2.$emit('refreshEvents');
+          } else if (response.data.error === true) {
+            _this2.$toasted.show(response.data.message, { type: 'error' });
+          }
+        }).catch(function (response) {
+          return _this2.$toasted.show('Something went wrong', { type: 'error' });
+        });
+      } else if (this.currentEvent !== null) {
+        Nova.request().put('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/update', data).then(function (response) {
+          if (response.data.success) {
+            _this2.$toasted.show('Event has been updated', { type: 'success' });
+            _this2.$emit('close');
+            _this2.$emit('refreshEvents');
+          } else if (response.data.error === true) {
+            _this2.$toasted.show(response.data.message, { type: 'error' });
+          }
+        }).catch(function (response) {
+          return _this2.$toasted.show('Something went wrong', { type: 'error' });
+        });
+      }
     },
 
-    methods: {
-        changeStart: function changeStart(value) {
-            this.start = value;
-        },
-        changeEnd: function changeEnd(value) {
-            this.end = value;
-        },
-        handleClose: function handleClose() {
-            this.$emit('close');
-        },
-        handleDelete: function handleDelete() {
-            var _this = this;
-
-            Nova.request().delete('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/destroy').then(function (response) {
-                if (response.data.success) {
-                    _this.$toasted.show('Event has been deleted', { type: 'success' });
-                    _this.$emit('close');
-                    _this.$emit('refreshEvents');
-                }
-            }).catch(function (response) {
-                return _this.$toasted.show('Something went wrong', { type: 'error' });
-            });
-        },
-        handleSave: function handleSave() {
-            var _this2 = this;
-
-            var data = {
-                project_id: this.project_id,
-                title: this.title,
-                description: this.description,
-                start: this.start,
-                end: this.end
-            };
-
-            if (this.currentEvent === null) {
-                Nova.request().post('/nova-vendor/nova-calendar-tool/events/store', data).then(function (response) {
-                    if (response.data.success) {
-                        _this2.$toasted.show('Event has been created', { type: 'success' });
-                        _this2.$emit('close');
-                        _this2.$emit('refreshEvents');
-                    } else if (response.data.error === true) {
-                        _this2.$toasted.show(response.data.message, { type: 'error' });
-                    }
-                }).catch(function (response) {
-                    return _this2.$toasted.show('Something went wrong', { type: 'error' });
-                });
-            } else if (this.currentEvent !== null) {
-                Nova.request().put('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/update', data).then(function (response) {
-                    if (response.data.success) {
-                        _this2.$toasted.show('Event has been updated', { type: 'success' });
-                        _this2.$emit('close');
-                        _this2.$emit('refreshEvents');
-                    } else if (response.data.error === true) {
-                        _this2.$toasted.show(response.data.message, { type: 'error' });
-                    }
-                }).catch(function (response) {
-                    return _this2.$toasted.show('Something went wrong', { type: 'error' });
-                });
-            }
-        },
-
-        fetchProjects: function fetchProjects() {
-            this.http.get('/nova-vendor/nova-calendar-tool', function () {
-                alert(this.projects);
-                this.$set('projects', this.projects);
-            });
-        }
+    fetchProjects: function fetchProjects() {
+      this.$set('projects', this.projects);
     }
+  }
 });
 
 /***/ }),
@@ -29087,7 +29090,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v(_vm._s(_vm.__("Cancel")))]
+                    [
+                      _vm._v(
+                        "\n        " + _vm._s(_vm.__("Cancel")) + "\n      "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -29103,7 +29110,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v(_vm._s(_vm.__("Save")))]
+                    [_vm._v("\n        " + _vm._s(_vm.__("Save")) + "\n      ")]
                   )
                 ])
               ],
