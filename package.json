@@ -20,6 +20,7 @@
         "@fullcalendar/list": "^5.0.0",
         "@fullcalendar/timegrid": "^5.0.1",
         "@fullcalendar/vue": "^5.0.0",
+        "axios": "^0.21.1",
         "vue": "^2.5.0",
         "vue-resource": "^1.5.1"
     }

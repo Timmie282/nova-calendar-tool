@@ -12,8 +12,8 @@
           <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
-            <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered" v-for="project in projects">
-              <option :value=" project.pro_id ">@{{ project.name }}</option>
+            <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered">
+              <option v-for="project in projects" :value=" project.pro_id ">{{ project.name }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
@@ -54,12 +54,12 @@
 
 <script>
 export default {
-  el: '#vue-instance',
+  el: '#app',
   name: 'EventModal',
   props: ['currentEvent', 'currentDate'],
   data() {
     return {
-      projects: this.fetchProjects(),
+      projects: [],
       project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
@@ -126,9 +126,11 @@ export default {
             .catch(response => this.$toasted.show('Something went wrong', {type: 'error'}));
       }
     },
-    fetchProjects: function () {
-      this.$set('projects', this.projects);
-    }
+    created() {
+      axios.get('./api/events')
+          .then(response => this.projects = response.data)
+    },
+
   },
 }
 </script>
