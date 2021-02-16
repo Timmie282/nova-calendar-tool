@@ -28706,6 +28706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['currentEvent', 'currentDate'],
     data: function data() {
         return {
+            projects: this.fetchProjects(),
             project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
             title: this.currentEvent !== null ? this.currentEvent.event.title : '',
             description: this.currentEvent !== null ? this.currentEvent.event.description : '',
@@ -28714,9 +28715,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    ready: function ready() {
-        this.fetchProjects();
-    },
     methods: {
         changeStart: function changeStart(value) {
             this.start = value;
@@ -28779,9 +28777,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         fetchProjects: function fetchProjects() {
-            this.http.get('/nova/nova-calendar-tool', function (projects) {
-                alert(projects);
-                this.$set('projects', projects);
+            this.http.get('/nova-vendor/nova-calendar-tool', function () {
+                alert(this.projects);
+                this.$set('projects', this.projects);
             });
         }
     }
@@ -28852,7 +28850,7 @@ var render = function() {
                               [_vm._v("Project:")]
                             ),
                             _vm._v(" "),
-                            _vm._l(_vm.fetchProjects(), function(project) {
+                            _vm._l(_vm.projects, function(project) {
                               return _c(
                                 "select",
                                 {

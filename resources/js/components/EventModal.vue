@@ -12,7 +12,7 @@
                     <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
                   <div class="border-b border-40 pb-4">
                     <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
-                    <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered" v-for="project in fetchProjects()">
+                    <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered" v-for="project in projects">
                         <option :value=" project.pro_id ">@{{ project.name }}</option>
                     </select>
                   </div>
@@ -52,15 +52,13 @@
         props: ['currentEvent', 'currentDate'],
         data() {
             return {
+                projects: this.fetchProjects(),
                 project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 title: this.currentEvent !== null ? this.currentEvent.event.title : '',
                 description: this.currentEvent !== null ? this.currentEvent.event.description : '',
                 start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
                 end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
             }
-        },
-        ready: function(){
-            this.fetchProjects();
         },
         methods: {
             changeStart(value) {
@@ -122,9 +120,9 @@
                 }
             },
             fetchProjects:function(){
-                this.http.get('/nova/nova-calendar-tool', function (projects) {
-                    alert(projects);
-                    this.$set('projects', projects);
+                this.http.get('/nova-vendor/nova-calendar-tool', function () {
+                    alert(this.projects);
+                    this.$set('projects', this.projects);
                 });
             }
         },
