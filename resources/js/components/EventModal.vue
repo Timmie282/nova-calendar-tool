@@ -127,7 +127,7 @@ export default {
       }
     },
     created() {
-      axios.get('./api/events')
+      axios.get('./nova-vendor/nova-calendar-tool/events')
           .then(response => this.projects = response.data)
     },
 
