@@ -15,11 +15,11 @@ class EventsController
             ->get(['cal_id', 'est_id', 'project_id', 'title', 'start', 'end', 'description'])
             ->toJson();
 
-        $projects = Project::filter($request->query())
+        $projects = Project::select()
 	        ->get(['pro_id', 'name'])
             ->toJson();
 
-        $estates = Estate::filter($request->query())
+        $estates = Estate::select()
 	        ->get(['est_id', 'address'])
             ->toJson();
 
