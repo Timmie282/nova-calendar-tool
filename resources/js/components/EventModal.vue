@@ -48,6 +48,7 @@
 
 <script>
     export default {
+        el: '#vue-instance',
         name: 'EventModal',
         props: ['currentEvent', 'currentDate'],
         data() {

@@ -28702,6 +28702,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    el: '#vue-instance',
     name: 'EventModal',
     props: ['currentEvent', 'currentDate'],
     data: function data() {
