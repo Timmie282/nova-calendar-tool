@@ -28713,7 +28713,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['currentEvent', 'currentDate'],
   data: function data() {
     return {
-      projects: [],
+      // projects: [],
       project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
@@ -28781,13 +28781,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           return _this2.$toasted.show('Something went wrong', { type: 'error' });
         });
       }
-    },
-    created: function created() {
-      var _this3 = this;
-
-      axios.get('./nova/nova-calendar-tool').then(function (response) {
-        return _this3.projects = JSON.stringify(response.data);
-      });
     }
   }
 });
@@ -28843,58 +28836,6 @@ var render = function() {
                               [_vm._v(_vm._s(_vm.__("Edit Event")))]
                             )
                           : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "border-b border-40 pb-4" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "mb-2 text-80 leading-tight",
-                              attrs: { for: "project_id" }
-                            },
-                            [_vm._v("Project:")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.project_id,
-                                  expression: "project_id"
-                                }
-                              ],
-                              staticClass:
-                                "w-full form-control form-input form-input-bordered",
-                              attrs: { name: "title" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.project_id = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                }
-                              }
-                            },
-                            _vm._l(_vm.projects, function(project) {
-                              return _c(
-                                "option",
-                                { domProps: { value: project.pro_id } },
-                                [_vm._v(_vm._s(project.name))]
-                              )
-                            }),
-                            0
-                          )
-                        ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(
@@ -29087,7 +29028,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n        " + _vm._s(_vm.__("Cancel")) + "\n      "
+                        "\n          " + _vm._s(_vm.__("Cancel")) + "\n        "
                       )
                     ]
                   ),
@@ -29105,7 +29046,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("\n        " + _vm._s(_vm.__("Save")) + "\n      ")]
+                    [
+                      _vm._v(
+                        "\n          " + _vm._s(_vm.__("Save")) + "\n        "
+                      )
+                    ]
                   )
                 ])
               ],
