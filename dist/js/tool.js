@@ -29646,8 +29646,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     selectedProject: function selectedProject() {
       var _this2 = this;
 
-      return this.projects.find(function (estate) {
-        return estate.pro_id === _this2.project_id;
+      return this.projects.find(function (project) {
+        return project.pro_id === _this2.project_id;
       });
     }
   },
@@ -29825,7 +29825,8 @@ var render = function() {
                                 {
                                   domProps: {
                                     value: project.pro_id,
-                                    selected: _vm.selectedProject.pro_id
+                                    selected:
+                                      this.selectedEstate === _vm.estate.est_id
                                   }
                                 },
                                 [_vm._v(_vm._s(project.name))]
@@ -29882,7 +29883,8 @@ var render = function() {
                                 {
                                   domProps: {
                                     value: estate.est_id,
-                                    selected: _vm.selectedEstate.est_id
+                                    selected:
+                                      this.selectedEstate === estate.est_id
                                   }
                                 },
                                 [_vm._v(_vm._s(estate.address))]
