@@ -12,17 +12,8 @@ class EventsController
     public function index(Request $request)
     {
         $events = Event::filter($request->query())
-            ->get(['cal_id', 'est_id', 'project_id', 'title', 'start', 'end', 'description']);
-
-//        $projects = Project::select('pro_id', 'name')
-//	        ->get();
-//
-//        $estates = Estate::select('est_id', 'address')
-//	        ->get();
-//
-//        $events[] = $projects;
-//        $events[] = $estates;
-        $events = json_encode($events);
+            ->get(['cal_id', 'est_id', 'project_id', 'title', 'start', 'end', 'description'])
+            ->toJson();
 
         return response($events);
     }
@@ -84,4 +75,22 @@ class EventsController
 
         return response()->json(['error' => true]);
     }
+
+    public function projects()
+    {
+    	$projects = Project::select('pro_id', 'name')
+		    ->get()
+		    ->toJson();
+
+    	return response($projects);
+    }
+
+	public function estates()
+	{
+		$estate = Estate::select('est_id', 'address')
+		                   ->get()
+		                   ->toJson();
+
+		return response($estate);
+	}
 }

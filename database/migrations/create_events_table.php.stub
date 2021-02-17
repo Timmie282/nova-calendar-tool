@@ -14,7 +14,7 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->bigIncrements('cal_id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('est_id');
             $table->unsignedBigInteger('project_id');
             $table->string('google_calendar_id')->nullable();
