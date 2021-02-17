@@ -15,14 +15,14 @@
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
               <option v-for="project in projects" :value=" project.pro_id " :selected="this.selectedEstate === project.pro_id">{{ project.name }}</option>
             </select>
-            {{ selectedProject }}
+            <p>{{ selectedProject }}</p>
           </div>
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
               <option v-for="estate in estates" :value=" estate.est_id " :selected="this.selectedEstate === estate.est_id">{{ estate.address }}</option>
             </select>
-            {{ selectedEstate }}
+            <p>{{ selectedEstate }}</p>
           </div>
           <div class="border-b border-40 pb-4">
             <label for="title" class="mb-2 text-80 leading-tight">Title:</label>

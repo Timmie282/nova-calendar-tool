@@ -29836,11 +29836,8 @@ var render = function() {
                             }),
                             0
                           ),
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(_vm.selectedProject) +
-                              "\n        "
-                          )
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(_vm.selectedProject))])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
@@ -29899,11 +29896,8 @@ var render = function() {
                             }),
                             0
                           ),
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(_vm.selectedEstate) +
-                              "\n        "
-                          )
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(_vm.selectedEstate))])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
