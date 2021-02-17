@@ -29785,7 +29785,7 @@ var render = function() {
                               ],
                               staticClass:
                                 "w-full form-control form-input form-input-bordered",
-                              attrs: { name: "title" },
+                              attrs: { name: "project_id" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -29806,7 +29806,14 @@ var render = function() {
                             _vm._l(_vm.projects, function(project) {
                               return _c(
                                 "option",
-                                { domProps: { value: project.pro_id } },
+                                {
+                                  domProps: {
+                                    value: project.pro_id,
+                                    selected:
+                                      _vm.estate.project_id ===
+                                      this.currentEvent.event.project_id
+                                  }
+                                },
                                 [_vm._v(_vm._s(project.name))]
                               )
                             }),
@@ -29821,7 +29828,7 @@ var render = function() {
                               staticClass: "mb-2 text-80 leading-tight",
                               attrs: { for: "est_id" }
                             },
-                            [_vm._v("Project:")]
+                            [_vm._v("Estates:")]
                           ),
                           _vm._v(" "),
                           _c(
@@ -29837,7 +29844,7 @@ var render = function() {
                               ],
                               staticClass:
                                 "w-full form-control form-input form-input-bordered",
-                              attrs: { name: "title" },
+                              attrs: { name: "est_id" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -29858,7 +29865,14 @@ var render = function() {
                             _vm._l(_vm.estates, function(estate) {
                               return _c(
                                 "option",
-                                { domProps: { value: estate.est_id } },
+                                {
+                                  domProps: {
+                                    value: estate.est_id,
+                                    selected:
+                                      estate.est_id ===
+                                      this.currentEvent.event.est_id
+                                  }
+                                },
                                 [_vm._v(_vm._s(estate.address))]
                               )
                             }),

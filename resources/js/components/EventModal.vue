@@ -12,14 +12,14 @@
           <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
-            <select v-model="project_id" name="title" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id ">{{ project.name }}</option>
+            <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
+              <option v-for="project in projects" :value=" project.pro_id " :selected="estate.project_id === this.currentEvent.event.project_id">{{ project.name }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
-            <label for="est_id" class="mb-2 text-80 leading-tight">Project:</label>
-            <select v-model="est_id" name="title" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" :value=" estate.est_id ">{{ estate.address }}</option>
+            <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
+            <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
+              <option v-for="estate in estates" :value=" estate.est_id " :selected="estate.est_id === this.currentEvent.event.est_id" >{{ estate.address }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
