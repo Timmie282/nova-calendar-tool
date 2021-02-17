@@ -29825,7 +29825,7 @@ var render = function() {
                                 {
                                   domProps: {
                                     value: project.pro_id,
-                                    selected: _vm.selectedProject
+                                    selected: _vm.selectedProject.pro_id
                                   }
                                 },
                                 [_vm._v(_vm._s(project.name))]
@@ -29882,7 +29882,7 @@ var render = function() {
                                 {
                                   domProps: {
                                     value: estate.est_id,
-                                    selected: _vm.selectedEstate
+                                    selected: _vm.selectedEstate.est_id
                                   }
                                 },
                                 [_vm._v(_vm._s(estate.address))]

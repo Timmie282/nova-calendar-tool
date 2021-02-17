@@ -13,13 +13,13 @@
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id " :selected="selectedProject">{{ project.name }}</option>
+              <option v-for="project in projects" :value=" project.pro_id " :selected="selectedProject.pro_id">{{ project.name }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" :value=" estate.est_id " :selected="selectedEstate">{{ estate.address }}</option>
+              <option v-for="estate in estates" :value=" estate.est_id " :selected="selectedEstate.est_id">{{ estate.address }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
