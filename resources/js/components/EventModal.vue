@@ -13,15 +13,14 @@
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id ">{{ project.name }}</option>
+              <option v-for="project in projects" :value=" project.pro_id " :selected="selectedProject">{{ project.name }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" :value=" estate.est_id ">{{ estate.address }}</option>
+              <option v-for="estate in estates" :value=" estate.est_id " :selected="selectedEstate">{{ estate.address }}</option>
             </select>
-            {{ selectedEstate }}
           </div>
           <div class="border-b border-40 pb-4">
             <label for="title" class="mb-2 text-80 leading-tight">Title:</label>
@@ -79,8 +78,14 @@ export default {
   computed: {
     selectedEstate()
     {
+      return this.estates.find(estate => {
+        return estate.est_id === this.est_id
+      })
+    },
+    selectedProject()
+    {
       return this.projects.find(estate => {
-        return estate.est_id === this.project_id
+        return estate.pro_id === this.project_id
       })
     }
   },
