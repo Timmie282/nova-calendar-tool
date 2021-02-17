@@ -29611,6 +29611,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   el: '#app',
@@ -29619,7 +29625,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       projects: [],
-      project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
+      estates: [],
+      project_id: this.currentEvent !== null ? this.currentEvent.event.project_id : '',
+      est_id: this.currentEvent !== null ? this.currentEvent.event.est_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -29655,6 +29663,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var data = {
         project_id: this.project_id,
+        est_id: this.est_id,
         title: this.title,
         description: this.description,
         start: this.start,
@@ -29692,7 +29701,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var _this3 = this;
 
     axios.get('/nova-vendor/nova-calendar-tool/events/projects').then(function (response) {
-      return _this3.projects = JSON.stringify(response.data);
+      return _this3.projects = response.data;
+    });
+
+    axios.get('/nova-vendor/nova-calendar-tool/events/estates').then(function (response) {
+      return _this3.estates = response.data;
     });
   }
 });
@@ -29795,6 +29808,58 @@ var render = function() {
                                 "option",
                                 { domProps: { value: project.pro_id } },
                                 [_vm._v(_vm._s(project.name))]
+                              )
+                            }),
+                            0
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "border-b border-40 pb-4" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "mb-2 text-80 leading-tight",
+                              attrs: { for: "est_id" }
+                            },
+                            [_vm._v("Project:")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.est_id,
+                                  expression: "est_id"
+                                }
+                              ],
+                              staticClass:
+                                "w-full form-control form-input form-input-bordered",
+                              attrs: { name: "title" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.est_id = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            _vm._l(_vm.estates, function(estate) {
+                              return _c(
+                                "option",
+                                { domProps: { value: estate.est_id } },
+                                [_vm._v(_vm._s(estate.address))]
                               )
                             }),
                             0

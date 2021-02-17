@@ -17,6 +17,12 @@
             </select>
           </div>
           <div class="border-b border-40 pb-4">
+            <label for="est_id" class="mb-2 text-80 leading-tight">Project:</label>
+            <select v-model="est_id" name="title" class="w-full form-control form-input form-input-bordered">
+              <option v-for="estate in estates" :value=" estate.est_id ">{{ estate.address }}</option>
+            </select>
+          </div>
+          <div class="border-b border-40 pb-4">
             <label for="title" class="mb-2 text-80 leading-tight">Title:</label>
             <input v-model="title" name="title" class="w-full form-control form-input form-input-bordered"/>
           </div>
@@ -60,7 +66,9 @@ export default {
   data() {
     return {
       projects: [],
-      project_id: this.currentEvent !== null ? this.currentEvent.event.title : '',
+      estates: [],
+      project_id: this.currentEvent !== null ? this.currentEvent.event.project_id : '',
+      est_id: this.currentEvent !== null ? this.currentEvent.event.est_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -92,6 +100,7 @@ export default {
     handleSave() {
       let data = {
         project_id: this.project_id,
+        est_id: this.est_id,
         title: this.title,
         description: this.description,
         start: this.start,
@@ -129,7 +138,10 @@ export default {
   },
   created() {
     axios.get('/nova-vendor/nova-calendar-tool/events/projects')
-        .then(response => this.projects = JSON.stringify(response.data));
+        .then(response => this.projects = response.data);
+
+    axios.get('/nova-vendor/nova-calendar-tool/events/estates')
+      .then(response => this.estates = response.data);
   },
 }
 </script>
