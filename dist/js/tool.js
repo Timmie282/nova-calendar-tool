@@ -29828,7 +29828,7 @@ var render = function() {
                                   domProps: {
                                     value: project.pro_id,
                                     selected:
-                                      this.selectedEstate === _vm.estate.est_id
+                                      this.selectedEstate === project.pro_id
                                   }
                                 },
                                 [_vm._v(_vm._s(project.name))]
