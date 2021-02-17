@@ -126,10 +126,10 @@ export default {
             .catch(response => this.$toasted.show('Something went wrong', {type: 'error'}));
       }
     },
-    created() {
-      axios.get('/nova-vendor/nova-calendar-tool/events/projects')
-          .then(response => this.projects = JSON.stringify(response.data));
-    },
+  },
+  created() {
+    axios.get('/nova-vendor/nova-calendar-tool/events/projects')
+        .then(response => this.projects = JSON.stringify(response.data));
   },
 }
 </script>
