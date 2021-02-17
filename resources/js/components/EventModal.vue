@@ -13,14 +13,15 @@
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id " :selected="estate.project_id === this.currentEvent.event.project_id">{{ project.name }}</option>
+              <option v-for="project in projects" :value=" project.pro_id ">{{ project.name }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" :value=" estate.est_id " :selected="estate.est_id === this.currentEvent.event.est_id" >{{ estate.address }}</option>
+              <option v-for="estate in estates" :value=" estate.est_id ">{{ estate.address }}</option>
             </select>
+            {{ selectedEstate }}
           </div>
           <div class="border-b border-40 pb-4">
             <label for="title" class="mb-2 text-80 leading-tight">Title:</label>
@@ -73,6 +74,14 @@ export default {
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
       end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
+  computed: {
+    selectedEstate()
+    {
+      return this.projects.find(estate => {
+        return estate.est_id === this.project_id
+      })
     }
   },
   methods: {
