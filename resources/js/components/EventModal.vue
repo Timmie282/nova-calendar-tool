@@ -14,13 +14,17 @@
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id " :selected="project.project_id === currentData.project_id">{{ project.name }}</option>
+              <option v-for="project in projects" :value=" project.pro_id " :selected="project.project_id === currentData.project_id">
+                {{ project.name }}
+              </option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" v-bind:value=" estate.est_id " v-bind:selected=" estate.est_id == currentData.est_id ? true : false">{{ estate.address }}</option>
+              <option v-for="estate in estates" v-bind:value=" estate.est_id " v-bind:selected=" estate.est_id == currentData.est_id ? true : false">
+                {{ estate.address }}
+              </option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
@@ -29,7 +33,9 @@
           </div>
           <div class="border-b border-40 pb-4">
             <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
-            <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered">{{ currentData.description }}</textarea>
+            <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered">
+              {{ currentData.description }}
+            </textarea>
           </div>
           <div class="border-b border-40 py-4">
             <label for="start" class="mb-2 text-80 leading-tight">Start:</label>
@@ -69,10 +75,10 @@ export default {
       projects: [],
       estates: [],
       currentData: [],
-      project_id: this.currentEvent !== null ? this.currentData.project_id : '',
-      est_id: this.currentEvent !== null ? this.currentData.est_id : '',
+      project_id: this.currentEvent !== null ? this.currentEvent.project_id : '',
+      est_id: this.currentEvent !== null ? this.currentEvent.est_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
-      description: this.currentEvent !== null ? this.currentData.description : '',
+      description: this.currentEvent !== null ? this.currentEvent.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
       end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
     }
@@ -143,12 +149,10 @@ export default {
         .then(response => this.projects = response.data);
 
     axios.get('/nova-vendor/nova-calendar-tool/events/estates')
-      .then(response => this.estates = response.data);
+        .then(response => this.estates = response.data);
 
-    if (this.currentEvent !== null) {
-      axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id)
-          .then(response => this.currentData = response.data);
-    }
+    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id)
+        .then(response => this.currentData = response.data);
   },
 }
 </script>
