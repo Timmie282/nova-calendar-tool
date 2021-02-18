@@ -14,7 +14,7 @@
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id " :selected="project.project_id === this.currentData.project_id">
+              <option v-for="project in projects" :value=" project.pro_id " :selected="project.project_id === currentData.project_id">
                 {{ project.name }}
               </option>
             </select>
@@ -22,7 +22,7 @@
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" v-bind:value=" estate.est_id " :selected="estate.est_id === this.currentData.est_id ? true : false">
+              <option v-for="estate in estates" v-bind:value=" estate.est_id " :selected="estate.est_id === currentData.est_id">
                 {{ estate.address }}
               </option>
             </select>
@@ -33,7 +33,7 @@
           </div>
           <div class="border-b border-40 pb-4">
             <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
-            <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered">{{ this.currentData.description }}</textarea>
+            <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered">{{ currentData.description }}</textarea>
           </div>
           <div class="border-b border-40 py-4">
             <label for="start" class="mb-2 text-80 leading-tight">Start:</label>
