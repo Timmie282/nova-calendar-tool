@@ -99,8 +99,7 @@ class EventsController
 	{
 		$events = Event::select('est_id', 'project_id', 'description')
 			->where('id', $id)
-			->get()
-			->toJson();
+			->get();
 
 		return response($events);
 	}

@@ -7,20 +7,20 @@
         style="width: 460px"
     >
       <slot :uppercaseMode="uppercaseMode" :mode="mode">
-        <div class="p-8" v-for="data in currentData">
+        <div class="p-8">
           <heading v-if="!currentEvent" :level="2" class="mb-6">{{ __('Create Event') }}</heading>
           <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
-          <p>{{ currentData.est_id }}</p>
+          <p>{{ currentData }}</p>
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id " :selected="data.project_id === project.project_id">{{ project.name }}</option>
+              <option v-for="project in projects" :value=" project.pro_id " :selected="currentData.project_id === project.project_id">{{ project.name }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" :value=" estate.est_id " :selected="data.est_id === estate.est_id">{{ estate.address }}</option>
+              <option v-for="estate in estates" :value=" estate.est_id " :selected="currentData.est_id === estate.est_id">{{ estate.address }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
@@ -29,7 +29,7 @@
           </div>
           <div class="border-b border-40 pb-4">
             <label for="description" class="mb-2 text-80 leading-tight">Description:</label>
-            <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered">{{ data.description }}</textarea>
+            <textarea v-model="description" name="description" class="w-full form-control form-input form-input-bordered">{{ currentData.description }}</textarea>
           </div>
           <div class="border-b border-40 py-4">
             <label for="start" class="mb-2 text-80 leading-tight">Start:</label>

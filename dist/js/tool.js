@@ -29747,8 +29747,8 @@ var render = function() {
               [
                 _vm._t(
                   "default",
-                  _vm._l(_vm.currentData, function(data) {
-                    return _c(
+                  [
+                    _c(
                       "div",
                       { staticClass: "p-8" },
                       [
@@ -29768,7 +29768,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(_vm.currentData.est_id))]),
+                        _c("p", [_vm._v(_vm._s(_vm.currentData))]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(
@@ -29818,7 +29818,8 @@ var render = function() {
                                   domProps: {
                                     value: project.pro_id,
                                     selected:
-                                      data.project_id === project.project_id
+                                      _vm.currentData.project_id ===
+                                      project.project_id
                                   }
                                 },
                                 [_vm._v(_vm._s(project.name))]
@@ -29875,7 +29876,8 @@ var render = function() {
                                 {
                                   domProps: {
                                     value: estate.est_id,
-                                    selected: data.est_id === estate.est_id
+                                    selected:
+                                      _vm.currentData.est_id === estate.est_id
                                   }
                                 },
                                 [_vm._v(_vm._s(estate.address))]
@@ -29953,7 +29955,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v(_vm._s(data.description))]
+                            [_vm._v(_vm._s(_vm.currentData.description))]
                           )
                         ]),
                         _vm._v(" "),
@@ -30019,7 +30021,7 @@ var render = function() {
                       ],
                       1
                     )
-                  }),
+                  ],
                   { uppercaseMode: _vm.uppercaseMode, mode: _vm.mode }
                 ),
                 _vm._v(" "),
