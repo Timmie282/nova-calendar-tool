@@ -29709,7 +29709,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return _this3.estates = response.data;
     });
 
-    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata?id' + this.currentEvent.event.id).then(function (response) {
+    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id).then(function (response) {
       return _this3.currentData = response.data;
     });
   }

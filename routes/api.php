@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/events', 'EventsController@index');
 Route::get('/events/projects', 'EventsController@projects');
 Route::get('/events/estates', 'EventsController@estates');
-Route::get('/events/currentdata', 'EventsController@currentData');
+Route::get('/events/currentdata/{id}', 'EventsController@currentData');
 Route::post('/events/store', 'EventsController@store');
 Route::put('/events/{event_id}/update', 'EventsController@update');
 Route::delete('/events/{event_id}/destroy', 'EventsController@destroy');
