@@ -29633,7 +29633,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       estates: [],
       currentData: [],
       project_id: this.currentEvent !== null ? this.currentEvent.event.project_id : '',
-      est_id: this.currentEvent !== null ? this.currentEvent.event.est_id : '',
+      estate_id: this.currentEvent !== null ? this.currentEvent.event.estate_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -29669,7 +29669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var data = {
         project_id: this.project_id,
-        est_id: this.est_id,
+        estate_id: this.estate_id,
         title: this.title,
         description: this.description,
         start: this.start,
@@ -29855,7 +29855,7 @@ var render = function() {
                             "label",
                             {
                               staticClass: "mb-2 text-80 leading-tight",
-                              attrs: { for: "est_id" }
+                              attrs: { for: "estate_id" }
                             },
                             [_vm._v("Estates:")]
                           ),
@@ -29867,13 +29867,13 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.est_id,
-                                  expression: "est_id"
+                                  value: _vm.estate_id,
+                                  expression: "estate_id"
                                 }
                               ],
                               staticClass:
                                 "w-full form-control form-input form-input-bordered",
-                              attrs: { name: "est_id" },
+                              attrs: { name: "estate_id" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -29885,7 +29885,7 @@ var render = function() {
                                         "_value" in o ? o._value : o.value
                                       return val
                                     })
-                                  _vm.est_id = $event.target.multiple
+                                  _vm.estate_id = $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
                                 }

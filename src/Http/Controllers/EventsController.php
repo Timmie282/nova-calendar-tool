@@ -13,7 +13,7 @@ class EventsController
     public function index(Request $request)
     {
         $events = Event::filter($request->query())
-            ->get(['id', 'est_id', 'project_id', 'title', 'start', 'end', 'description'])
+            ->get(['id', 'estate_id', 'project_id', 'title', 'start', 'end', 'description'])
             ->toJson();
 
         return response($events);

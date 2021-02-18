@@ -20,9 +20,9 @@
             </select>
           </div>
           <div class="border-b border-40 pb-4">
-            <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
-            <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" v-bind:value=" estate.est_id " :selected="estate.est_id === currentData.est_id">
+            <label for="estate_id" class="mb-2 text-80 leading-tight">Estates:</label>
+            <select v-model="estate_id" name="estate_id" class="w-full form-control form-input form-input-bordered">
+              <option v-for="estate in estates" :value=" estate.est_id " v-bind:selected="estate.est_id === currentData.est_id">
                 {{ estate.address }}
               </option>
             </select>
@@ -74,7 +74,7 @@ export default {
       estates: [],
       currentData: [],
       project_id: this.currentEvent !== null ? this.currentEvent.event.project_id : '',
-      est_id: this.currentEvent !== null ? this.currentEvent.event.est_id : '',
+      estate_id: this.currentEvent !== null ? this.currentEvent.event.estate_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
       description: this.currentEvent !== null ? this.currentEvent.event.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -106,7 +106,7 @@ export default {
     handleSave() {
       let data = {
         project_id: this.project_id,
-        est_id: this.est_id,
+        estate_id: this.estate_id,
         title: this.title,
         description: this.description,
         start: this.start,
