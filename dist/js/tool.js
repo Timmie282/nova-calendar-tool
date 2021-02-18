@@ -29618,6 +29618,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   el: '#app',
@@ -29628,10 +29634,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       projects: [],
       estates: [],
       currentData: [],
-      project_id: this.currentEvent !== null ? this.currentData.project_id : '',
-      est_id: this.currentEvent !== null ? this.currentData.est_id : '',
+      project_id: this.currentEvent !== null ? this.currentEvent.project_id : '',
+      est_id: this.currentEvent !== null ? this.currentEvent.est_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
-      description: this.currentEvent !== null ? this.currentData.description : '',
+      description: this.currentEvent !== null ? this.currentEvent.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
       end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
     };
@@ -29710,11 +29716,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return _this3.estates = response.data;
     });
 
-    if (this.currentEvent !== null) {
-      axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id).then(function (response) {
-        return _this3.currentData = response.data;
-      });
-    }
+    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id).then(function (response) {
+      return _this3.currentData = response.data;
+    });
   }
 });
 
@@ -29824,7 +29828,13 @@ var render = function() {
                                       _vm.currentData.project_id
                                   }
                                 },
-                                [_vm._v(_vm._s(project.name))]
+                                [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(project.name) +
+                                      "\n            "
+                                  )
+                                ]
                               )
                             }),
                             0
@@ -29884,7 +29894,13 @@ var render = function() {
                                         : false
                                   }
                                 },
-                                [_vm._v(_vm._s(estate.address))]
+                                [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(estate.address) +
+                                      "\n            "
+                                  )
+                                ]
                               )
                             }),
                             0
@@ -29959,7 +29975,13 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v(_vm._s(_vm.currentData.description))]
+                            [
+                              _vm._v(
+                                "            " +
+                                  _vm._s(_vm.currentData.description) +
+                                  "\n          "
+                              )
+                            ]
                           )
                         ]),
                         _vm._v(" "),
