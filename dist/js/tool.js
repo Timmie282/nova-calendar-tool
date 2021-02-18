@@ -29617,8 +29617,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   el: '#app',
@@ -29628,6 +29626,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       projects: [],
       estates: [],
+      currentData: [],
       project_id: this.currentEvent !== null ? this.currentEvent.event.project_id : '',
       est_id: this.currentEvent !== null ? this.currentEvent.event.est_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
@@ -29637,22 +29636,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  computed: {
-    selectedEstate: function selectedEstate() {
-      var _this = this;
-
-      return this.estates.find(function (estate) {
-        return estate.est_id === _this.est_id;
-      });
-    },
-    selectedProject: function selectedProject() {
-      var _this2 = this;
-
-      return this.projects.find(function (project) {
-        return project.pro_id === _this2.project_id;
-      });
-    }
-  },
   methods: {
     changeStart: function changeStart(value) {
       this.start = value;
@@ -29664,20 +29647,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$emit('close');
     },
     handleDelete: function handleDelete() {
-      var _this3 = this;
+      var _this = this;
 
       Nova.request().delete('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/destroy').then(function (response) {
         if (response.data.success) {
-          _this3.$toasted.show('Event has been deleted', { type: 'success' });
-          _this3.$emit('close');
-          _this3.$emit('refreshEvents');
+          _this.$toasted.show('Event has been deleted', { type: 'success' });
+          _this.$emit('close');
+          _this.$emit('refreshEvents');
         }
       }).catch(function (response) {
-        return _this3.$toasted.show('Something went wrong', { type: 'error' });
+        return _this.$toasted.show('Something went wrong', { type: 'error' });
       });
     },
     handleSave: function handleSave() {
-      var _this4 = this;
+      var _this2 = this;
 
       var data = {
         project_id: this.project_id,
@@ -29691,39 +29674,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.currentEvent === null) {
         Nova.request().post('/nova-vendor/nova-calendar-tool/events/store', data).then(function (response) {
           if (response.data.success) {
-            _this4.$toasted.show('Event has been created', { type: 'success' });
-            _this4.$emit('close');
-            _this4.$emit('refreshEvents');
+            _this2.$toasted.show('Event has been created', { type: 'success' });
+            _this2.$emit('close');
+            _this2.$emit('refreshEvents');
           } else if (response.data.error === true) {
-            _this4.$toasted.show(response.data.message, { type: 'error' });
+            _this2.$toasted.show(response.data.message, { type: 'error' });
           }
         }).catch(function (response) {
-          return _this4.$toasted.show('Something went wrong', { type: 'error' });
+          return _this2.$toasted.show('Something went wrong', { type: 'error' });
         });
       } else if (this.currentEvent !== null) {
         Nova.request().put('/nova-vendor/nova-calendar-tool/events/' + this.currentEvent.event.id + '/update', data).then(function (response) {
           if (response.data.success) {
-            _this4.$toasted.show('Event has been updated', { type: 'success' });
-            _this4.$emit('close');
-            _this4.$emit('refreshEvents');
+            _this2.$toasted.show('Event has been updated', { type: 'success' });
+            _this2.$emit('close');
+            _this2.$emit('refreshEvents');
           } else if (response.data.error === true) {
-            _this4.$toasted.show(response.data.message, { type: 'error' });
+            _this2.$toasted.show(response.data.message, { type: 'error' });
           }
         }).catch(function (response) {
-          return _this4.$toasted.show('Something went wrong', { type: 'error' });
+          return _this2.$toasted.show('Something went wrong', { type: 'error' });
         });
       }
     }
   },
   created: function created() {
-    var _this5 = this;
+    var _this3 = this;
 
     axios.get('/nova-vendor/nova-calendar-tool/events/projects').then(function (response) {
-      return _this5.projects = response.data;
+      return _this3.projects = response.data;
     });
 
     axios.get('/nova-vendor/nova-calendar-tool/events/estates').then(function (response) {
-      return _this5.estates = response.data;
+      return _this3.estates = response.data;
+    });
+
+    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata?id' + this.currentEvent.event.id).then(function (response) {
+      return _this3.currentData = response.data;
     });
   }
 });
@@ -29824,20 +29811,12 @@ var render = function() {
                             _vm._l(_vm.projects, function(project) {
                               return _c(
                                 "option",
-                                {
-                                  domProps: {
-                                    value: project.pro_id,
-                                    selected:
-                                      this.selectedEstate === project.pro_id
-                                  }
-                                },
+                                { domProps: { value: project.pro_id } },
                                 [_vm._v(_vm._s(project.name))]
                               )
                             }),
                             0
-                          ),
-                          _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.selectedProject))])
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
@@ -29884,20 +29863,12 @@ var render = function() {
                             _vm._l(_vm.estates, function(estate) {
                               return _c(
                                 "option",
-                                {
-                                  domProps: {
-                                    value: estate.est_id,
-                                    selected:
-                                      this.selectedEstate === estate.est_id
-                                  }
-                                },
+                                { domProps: { value: estate.est_id } },
                                 [_vm._v(_vm._s(estate.address))]
                               )
                             }),
                             0
-                          ),
-                          _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.selectedEstate))])
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [

@@ -3,6 +3,7 @@
 namespace Czemu\NovaCalendarTool\Http\Controllers;
 
 use Czemu\NovaCalendarTool\Models\Event;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Tenant\Project;
 use App\Models\Tenant\Estate;
@@ -92,5 +93,15 @@ class EventsController
 		                   ->toJson();
 
 		return response($estate);
+	}
+
+	public function currentData($id)
+	{
+		$events = Event::select('est_id', 'project_id', 'description')
+			->where('id', $id)
+			->get()
+			->toJson();
+
+		return response($events);
 	}
 }
