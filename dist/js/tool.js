@@ -29747,8 +29747,8 @@ var render = function() {
               [
                 _vm._t(
                   "default",
-                  [
-                    _c(
+                  _vm._l(_vm.currentData, function(data) {
+                    return _c(
                       "div",
                       { staticClass: "p-8" },
                       [
@@ -29770,138 +29770,120 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [_vm._v(_vm._s(_vm.currentData.est_id))]),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "border-b border-40 pb-4" },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mb-2 text-80 leading-tight",
-                                attrs: { for: "project_id" }
-                              },
-                              [_vm._v("Project:")]
-                            ),
-                            _vm._v(" "),
-                            _vm._l(_vm.currentData, function(data) {
-                              return _c(
-                                "select",
+                        _c("div", { staticClass: "border-b border-40 pb-4" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "mb-2 text-80 leading-tight",
+                              attrs: { for: "project_id" }
+                            },
+                            [_vm._v("Project:")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
                                 {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.project_id,
-                                      expression: "project_id"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "w-full form-control form-input form-input-bordered",
-                                  attrs: { name: "project_id" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.project_id = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    }
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.project_id,
+                                  expression: "project_id"
+                                }
+                              ],
+                              staticClass:
+                                "w-full form-control form-input form-input-bordered",
+                              attrs: { name: "project_id" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.project_id = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            _vm._l(_vm.projects, function(project) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: project.pro_id,
+                                    selected:
+                                      data.project_id === project.project_id
                                   }
                                 },
-                                _vm._l(_vm.projects, function(project) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      domProps: {
-                                        value: project.pro_id,
-                                        selected:
-                                          data.project_id === project.project_id
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(project.name))]
-                                  )
-                                }),
-                                0
+                                [_vm._v(_vm._s(project.name))]
                               )
-                            })
-                          ],
-                          2
-                        ),
+                            }),
+                            0
+                          )
+                        ]),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "border-b border-40 pb-4" },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mb-2 text-80 leading-tight",
-                                attrs: { for: "est_id" }
-                              },
-                              [_vm._v("Estates:")]
-                            ),
-                            _vm._v(" "),
-                            _vm._l(_vm.currentData, function(data) {
-                              return _c(
-                                "select",
+                        _c("div", { staticClass: "border-b border-40 pb-4" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "mb-2 text-80 leading-tight",
+                              attrs: { for: "est_id" }
+                            },
+                            [_vm._v("Estates:")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
                                 {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.est_id,
-                                      expression: "est_id"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "w-full form-control form-input form-input-bordered",
-                                  attrs: { name: "est_id" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.est_id = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    }
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.est_id,
+                                  expression: "est_id"
+                                }
+                              ],
+                              staticClass:
+                                "w-full form-control form-input form-input-bordered",
+                              attrs: { name: "est_id" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.est_id = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            _vm._l(_vm.estates, function(estate) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: estate.est_id,
+                                    selected: data.est_id === estate.est_id
                                   }
                                 },
-                                _vm._l(_vm.estates, function(estate) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      domProps: {
-                                        value: estate.est_id,
-                                        selected: data.est_id === estate.est_id
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(estate.address))]
-                                  )
-                                }),
-                                0
+                                [_vm._v(_vm._s(estate.address))]
                               )
-                            })
-                          ],
-                          2
-                        ),
+                            }),
+                            0
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(
@@ -29937,50 +29919,43 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "border-b border-40 pb-4" },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mb-2 text-80 leading-tight",
-                                attrs: { for: "description" }
-                              },
-                              [_vm._v("Description:")]
-                            ),
-                            _vm._v(" "),
-                            _vm._l(_vm.currentData, function(data) {
-                              return _c(
-                                "textarea",
+                        _c("div", { staticClass: "border-b border-40 pb-4" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "mb-2 text-80 leading-tight",
+                              attrs: { for: "description" }
+                            },
+                            [_vm._v("Description:")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "textarea",
+                            {
+                              directives: [
                                 {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.description,
-                                      expression: "description"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "w-full form-control form-input form-input-bordered",
-                                  attrs: { name: "description" },
-                                  domProps: { value: _vm.description },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.description = $event.target.value
-                                    }
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.description,
+                                  expression: "description"
+                                }
+                              ],
+                              staticClass:
+                                "w-full form-control form-input form-input-bordered",
+                              attrs: { name: "description" },
+                              domProps: { value: _vm.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
                                   }
-                                },
-                                [_vm._v(_vm._s(data.description))]
-                              )
-                            })
-                          ],
-                          2
-                        ),
+                                  _vm.description = $event.target.value
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(data.description))]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -30044,7 +30019,7 @@ var render = function() {
                       ],
                       1
                     )
-                  ],
+                  }),
                   { uppercaseMode: _vm.uppercaseMode, mode: _vm.mode }
                 ),
                 _vm._v(" "),
