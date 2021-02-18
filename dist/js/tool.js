@@ -29811,7 +29811,13 @@ var render = function() {
                             _vm._l(_vm.projects, function(project) {
                               return _c(
                                 "option",
-                                { domProps: { value: project.pro_id } },
+                                {
+                                  domProps: {
+                                    value: project.pro_id,
+                                    selected:
+                                      _vm.currentData[1] === project.project_id
+                                  }
+                                },
                                 [_vm._v(_vm._s(project.name))]
                               )
                             }),
@@ -29863,7 +29869,13 @@ var render = function() {
                             _vm._l(_vm.estates, function(estate) {
                               return _c(
                                 "option",
-                                { domProps: { value: estate.est_id } },
+                                {
+                                  domProps: {
+                                    value: estate.est_id,
+                                    selected:
+                                      _vm.currentData[0] === estate.est_id
+                                  }
+                                },
                                 [_vm._v(_vm._s(estate.address))]
                               )
                             }),
@@ -29915,28 +29927,32 @@ var render = function() {
                             [_vm._v("Description:")]
                           ),
                           _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.description,
-                                expression: "description"
-                              }
-                            ],
-                            staticClass:
-                              "w-full form-control form-input form-input-bordered",
-                            attrs: { name: "description" },
-                            domProps: { value: _vm.description },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c(
+                            "textarea",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.description,
+                                  expression: "description"
                                 }
-                                _vm.description = $event.target.value
+                              ],
+                              staticClass:
+                                "w-full form-control form-input form-input-bordered",
+                              attrs: { name: "description" },
+                              domProps: { value: _vm.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.description = $event.target.value
+                                }
                               }
-                            }
-                          })
+                            },
+                            [_vm._v(_vm._s(_vm.currentData[2]))]
+                          )
                         ]),
                         _vm._v(" "),
                         _c(
