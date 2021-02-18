@@ -151,8 +151,10 @@ export default {
     axios.get('/nova-vendor/nova-calendar-tool/events/estates')
         .then(response => this.estates = response.data);
 
-    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id)
-        .then(response => this.currentData = response.data);
+    if (this.currentEvent !== null) {
+      axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id)
+          .then(response => this.currentData = response.data);
+    }
   },
 }
 </script>
