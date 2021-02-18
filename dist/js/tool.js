@@ -29701,6 +29701,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           return _this2.$toasted.show('Something went wrong', { type: 'error' });
         });
       }
+    },
+    selectedEst: function selectedEst(id) {
+      if (estate.est_id === id) {
+        return 'selected';
+      } else {
+        return '';
+      }
     }
   },
   created: function created() {
@@ -29890,10 +29897,9 @@ var render = function() {
                                 {
                                   domProps: {
                                     value: estate.est_id,
-                                    selected:
-                                      estate.est_id == _vm.currentData.est_id
-                                        ? true
-                                        : false
+                                    selected: _vm.selectedEst(
+                                      _vm.currentData.est_id
+                                    )
                                   }
                                 },
                                 [

@@ -22,7 +22,7 @@
           <div class="border-b border-40 pb-4">
             <label for="est_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="est_id" name="est_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" v-bind:value=" estate.est_id " v-bind:selected=" estate.est_id == currentData.est_id ? true : false">
+              <option v-for="estate in estates" v-bind:value=" estate.est_id " :selected="selectedEst(currentData.est_id)">
                 {{ estate.address }}
               </option>
             </select>
@@ -139,6 +139,13 @@ export default {
               }
             })
             .catch(response => this.$toasted.show('Something went wrong', {type: 'error'}));
+      }
+    },
+    selectedEst(id) {
+      if (estate.est_id === id){
+        return 'selected'
+      } else {
+        return ''
       }
     },
   },
