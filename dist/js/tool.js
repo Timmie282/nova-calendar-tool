@@ -29834,7 +29834,7 @@ var render = function() {
                                     value: project.pro_id,
                                     selected:
                                       project.project_id ===
-                                      _vm.currentData.project_id
+                                      this.currentData.project_id
                                   }
                                 },
                                 [
@@ -29897,9 +29897,10 @@ var render = function() {
                                 {
                                   domProps: {
                                     value: estate.est_id,
-                                    selected: _vm.selectedEst(
-                                      _vm.currentData.est_id
-                                    )
+                                    selected:
+                                      estate.est_id === this.currentData.est_id
+                                        ? true
+                                        : false
                                   }
                                 },
                                 [
@@ -29983,7 +29984,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v(_vm._s(_vm.currentData.description))]
+                            [_vm._v(_vm._s(this.currentData.description))]
                           )
                         ]),
                         _vm._v(" "),
