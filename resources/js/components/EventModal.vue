@@ -11,7 +11,6 @@
           <heading v-if="!currentEvent" :level="2" class="mb-6">{{ __('Create Event') }}</heading>
           <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
           <p>{{ currentData }}</p>
-          <p>{{ this.currentEvent.event.project_id }}</p>
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
@@ -70,10 +69,10 @@ export default {
       projects: [],
       estates: [],
       currentData: [],
-      project_id: this.currentEvent !== null ? this.currentEvent.event.project_id : '',
-      est_id: this.currentEvent !== null ? this.currentEvent.event.est_id : '',
+      project_id: this.currentEvent !== null ? this.currentData.project_id : '',
+      est_id: this.currentEvent !== null ? this.currentData.est_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
-      description: this.currentEvent !== null ? this.currentEvent.event.description : '',
+      description: this.currentEvent !== null ? this.currentData.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
       end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
     }

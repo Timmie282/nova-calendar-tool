@@ -29618,7 +29618,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   el: '#app',
@@ -29629,10 +29628,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       projects: [],
       estates: [],
       currentData: [],
-      project_id: this.currentEvent !== null ? this.currentEvent.event.project_id : '',
-      est_id: this.currentEvent !== null ? this.currentEvent.event.est_id : '',
+      project_id: this.currentEvent !== null ? this.currentData.project_id : '',
+      est_id: this.currentEvent !== null ? this.currentData.est_id : '',
       title: this.currentEvent !== null ? this.currentEvent.event.title : '',
-      description: this.currentEvent !== null ? this.currentEvent.event.description : '',
+      description: this.currentEvent !== null ? this.currentData.description : '',
       start: moment(this.currentEvent !== null ? this.currentEvent.event.start : this.currentDate.date).format('YYYY-MM-DD HH:mm:ss'),
       end: this.currentEvent !== null ? moment(this.currentEvent.event.end).format('YYYY-MM-DD HH:mm:ss') : moment(this.currentDate.date).add(1, 'hour').format('YYYY-MM-DD HH:mm:ss')
     };
@@ -29772,10 +29771,6 @@ var render = function() {
                           : _vm._e(),
                         _vm._v(" "),
                         _c("p", [_vm._v(_vm._s(_vm.currentData))]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(_vm._s(this.currentEvent.event.project_id))
-                        ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(
