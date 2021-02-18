@@ -29710,9 +29710,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return _this3.estates = response.data;
     });
 
-    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id).then(function (response) {
-      return _this3.currentData = response.data;
-    });
+    if (this.currentEvent !== null) {
+      axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id).then(function (response) {
+        return _this3.currentData = response.data;
+      });
+    }
   }
 });
 
@@ -29818,8 +29820,8 @@ var render = function() {
                                   domProps: {
                                     value: project.pro_id,
                                     selected:
-                                      _vm.currentData.project_id ===
-                                      project.project_id
+                                      project.project_id ===
+                                      _vm.currentData.project_id
                                   }
                                 },
                                 [_vm._v(_vm._s(project.name))]

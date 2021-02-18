@@ -14,7 +14,7 @@
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="project in projects" :value=" project.pro_id " :selected="currentData.project_id === project.project_id">{{ project.name }}</option>
+              <option v-for="project in projects" :value=" project.pro_id " :selected="project.project_id === currentData.project_id">{{ project.name }}</option>
             </select>
           </div>
           <div class="border-b border-40 pb-4">
@@ -145,8 +145,10 @@ export default {
     axios.get('/nova-vendor/nova-calendar-tool/events/estates')
       .then(response => this.estates = response.data);
 
-    axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id)
-        .then(response => this.currentData = response.data);
+    if (this.currentEvent !== null) {
+      axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id)
+          .then(response => this.currentData = response.data);
+    }
   },
 }
 </script>
