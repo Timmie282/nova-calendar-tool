@@ -29624,6 +29624,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   el: '#app',
@@ -29717,7 +29718,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
 
     if (this.currentEvent !== null) {
-      axios.get('/nova-vendor/nova-calendar-tool/events/currentdata/' + this.currentEvent.event.id).then(function (response) {
+      axios.get('/nova-vendor/nova-calendar-tool/events/current-data/' + this.currentEvent.event.id).then(function (response) {
         return _this3.currentData = response.data;
       });
     }
@@ -29777,6 +29778,8 @@ var render = function() {
                           : _vm._e(),
                         _vm._v(" "),
                         _c("p", [_vm._v(_vm._s(_vm.currentData))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(this.currentEvent.est_id))]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(
