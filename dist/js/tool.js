@@ -29617,6 +29617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   el: '#app',
@@ -29766,6 +29767,8 @@ var render = function() {
                               [_vm._v(_vm._s(_vm.__("Edit Event")))]
                             )
                           : _vm._e(),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(_vm.currentData))]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(

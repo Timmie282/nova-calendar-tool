@@ -10,6 +10,7 @@
         <div class="p-8">
           <heading v-if="!currentEvent" :level="2" class="mb-6">{{ __('Create Event') }}</heading>
           <heading v-if="currentEvent" :level="2" class="mb-6">{{ __('Edit Event') }}</heading>
+          <p>{{ currentData }}</p>
           <div class="border-b border-40 pb-4">
             <label for="project_id" class="mb-2 text-80 leading-tight">Project:</label>
             <select v-model="project_id" name="project_id" class="w-full form-control form-input form-input-bordered">
