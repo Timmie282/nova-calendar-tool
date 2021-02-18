@@ -29768,7 +29768,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(_vm.currentData))]),
+                        _c("p", [_vm._v(_vm._s(_vm.currentData.est_id))]),
                         _vm._v(" "),
                         _c("div", { staticClass: "border-b border-40 pb-4" }, [
                           _c(
@@ -29954,7 +29954,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v(_vm._s(_vm.currentData[2]))]
+                            [_vm._v(_vm._s(_vm.currentData.description))]
                           )
                         ]),
                         _vm._v(" "),
