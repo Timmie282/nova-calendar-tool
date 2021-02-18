@@ -29877,7 +29877,7 @@ var render = function() {
                                   domProps: {
                                     value: estate.est_id,
                                     selected:
-                                      _vm.currentData.est_id === estate.est_id
+                                      estate.est_id === _vm.currentData.est_id
                                   }
                                 },
                                 [_vm._v(_vm._s(estate.address))]
