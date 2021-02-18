@@ -22,7 +22,7 @@
           <div class="border-b border-40 pb-4">
             <label for="estate_id" class="mb-2 text-80 leading-tight">Estates:</label>
             <select v-model="estate_id" name="estate_id" class="w-full form-control form-input form-input-bordered">
-              <option v-for="estate in estates" :value=" estate.est_id " v-bind:selected="estate.est_id === currentData.est_id">
+              <option v-for="estate in estates" :value=" estate.est_id " v-bind:selected="estate.est_id === currentData.estate_id">
                 {{ estate.address }}
               </option>
             </select>

@@ -24,7 +24,7 @@ class CreateEventsTable extends Migration
             $table->text('description');
             $table->timestamps();
 
-            $table->foreign('est_id')->references('est_id')->on('estates');
+            $table->foreign('estate_id')->references('est_id')->on('estates');
             $table->foreign('project_id')->references('pro_id')->on('projects');
         });
     }
