@@ -95,7 +95,7 @@ class EventsController
 		return response($estate);
 	}
 
-	public function currentData($id)
+	public function currentEvent($id)
 	{
 		$events = Event::select('est_id', 'project_id', 'description')
 			->where('id', $id)
